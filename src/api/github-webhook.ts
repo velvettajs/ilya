@@ -1,17 +1,10 @@
-import express, { Express, Request, Response } from "express";
+import { VercelRequest, VercelResponse } from "@vercel/node";
+import { eventConfig } from "../config/events";
 import axios from "axios";
-import bodyParser from "body-parser";
-import "dotenv/config";
-import { eventConfig } from "./config/events";
 
-const app: Express = express();
-const PORT = process.env.PORT || 3000;
 const webhookUrl: string = process.env.WEBHOOK_URL as string;
-app.use(bodyParser.json());
-app.get('/', (req, res) => {
-    res.send('this is velvetta codes!');
-})
-app.post("/github-webhook", async (req: Request, res: Response) => {
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   const githubEvent = req.headers["x-github-event"] as string;
   const payload = req.body;
   const authorName = payload.sender?.login;
@@ -54,6 +47,5 @@ app.post("/github-webhook", async (req: Request, res: Response) => {
     console.log("Error sending notification to Discord", e);
     res.status(500).send("Error sending notification to Discord");
   }
-});
-
-app.listen(PORT, () => console.log("Server runnin on port:", PORT));
+  res.status(200).send("Here's where velvettajs deploys code!");
+}

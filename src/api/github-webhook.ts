@@ -1,7 +1,10 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { eventConfig } from "../config/events";
+import { GiphyFetch } from "@giphy/js-fetch-api";
 import axios from "axios";
 
+const GIPHY_API_KEY: string = process.env.GIPHY_API_KEY as string;
+const gf = new GiphyFetch(GIPHY_API_KEY);
 const webhookUrl: string = process.env.WEBHOOK_URL as string;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -19,6 +22,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       url: payload.repository?.html_url,
     }),
   };
+  const { data: gifs } = await gf.search("cats coding");
+  const gif = gifs[Math.floor(Math.random() * gifs.length)];
   const { title, description, color, fields, url } =
     eventDetails.getDetails(payload);
   const embed = {
@@ -35,9 +40,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     footer: {
       text: `Event type: ${githubEvent}`,
     },
+    thumbnail_url: gif.url,
   };
   const message = {
-    username: "ilya - velvetta's informer",
+    username: "ilya",
     embeds: [embed],
   };
   try {

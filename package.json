@@ -11,6 +11,7 @@
   "author": "OSintt",
   "license": "ISC",
   "dependencies": {
+    "@giphy/js-fetch-api": "^5.6.0",
     "@vercel/node": "^3.2.7",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5"

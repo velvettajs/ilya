@@ -1,6 +1,7 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { eventConfig } from "../config/events";
 import { GiphyFetch } from "@giphy/js-fetch-api";
+import "dotenv/config";
 import axios from "axios";
 
 const GIPHY_API_KEY: string = process.env.GIPHY_API_KEY as string;
@@ -14,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const authorAvatarUrl = payload.sender?.avatar_url;
   const repoName = payload.repo?.name;
   const eventDetails = eventConfig[githubEvent] || {
-    color: 0x808080,
+    color: 0x7e7ece,
     description: "An unknown event occurred.",
     getDetails: (payload) => ({
       title: `Event in ${repoName}`,
@@ -22,7 +23,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       url: payload.repository?.html_url,
     }),
   };
-  const { data: gifs } = await gf.search("cats coding", {limit: 100 });
+  const { data: gifs } = await gf.search("aesthetic cat", { limit: 35 });
   const gif = gifs[Math.floor(Math.random() * gifs.length)];
   const { title, description, fields, url } = eventDetails.getDetails(payload);
   const embed = {
@@ -32,7 +33,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
     title,
     description,
-    color: 'RANDOM',
     fields,
     url,
     timestamp: new Date().toISOString(),
@@ -40,7 +40,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       text: `Event type: ${githubEvent}`,
     },
     thumbnail: {
-      url: gif.url,
+      url: gif.images.original.url,
     },
   };
   const message = {

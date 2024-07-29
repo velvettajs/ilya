@@ -39,7 +39,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     footer: {
       text: `Event type: ${githubEvent}`,
     },
-    thumbnail_url: gif.url,
+    thumbnail: {
+      url: gif.url,
+    },
   };
   const message = {
     username: "ilya",

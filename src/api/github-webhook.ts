@@ -22,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       url: payload.repository?.html_url,
     }),
   };
-  const { data: gifs } = await gf.search("cats coding");
+  const { data: gifs } = await gf.search("cats coding", {limit: 100 });
   const gif = gifs[Math.floor(Math.random() * gifs.length)];
   const { title, description, fields, url } = eventDetails.getDetails(payload);
   const embed = {
@@ -32,7 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
     title,
     description,
-    color: Math.floor(Math.random() * 16777215).toString(16),
+    color: 'RANDOM',
     fields,
     url,
     timestamp: new Date().toISOString(),

@@ -1,12 +1,10 @@
 export const eventConfig: {
   [key: string]: {
-    color: number;
     description: string;
     getDetails: (payload: any) => any;
   };
 } = {
   push: {
-    color: 0x00ff00,
     description: "A push event occurred.",
     getDetails: (payload) => ({
       title: `New Push to ${payload.repository?.full_name}`,
@@ -22,7 +20,6 @@ export const eventConfig: {
     }),
   },
   pull_request: {
-    color: 0x0000ff,
     description: "A pull request event occurred.",
     getDetails: (payload) => ({
       title: `Pull Request ${payload.action} in ${payload.repository?.full_name}`,
@@ -34,7 +31,6 @@ export const eventConfig: {
     }),
   },
   issues: {
-    color: 0xffa500,
     description: "An issue event occurred.",
     getDetails: (payload) => ({
       title: `Issue ${payload.action} in ${payload.repository?.full_name}`,
@@ -46,7 +42,6 @@ export const eventConfig: {
     }),
   },
   create: {
-    color: 0x00ffff,
     description: "A branch or tag was created.",
     getDetails: (payload) => ({
       title: `Created ${payload.ref_type} ${payload.ref} in ${payload.repository?.full_name}`,
@@ -55,7 +50,6 @@ export const eventConfig: {
     }),
   },
   delete: {
-    color: 0xff0000,
     description: "A branch or tag was deleted.",
     getDetails: (payload) => ({
       title: `Deleted ${payload.ref_type} ${payload.ref} from ${payload.repository?.full_name}`,
@@ -64,7 +58,6 @@ export const eventConfig: {
     }),
   },
   collaborator: {
-    color: 0x800080,
     description: "A collaborator was added, removed, or changed.",
     getDetails: (payload) => ({
       title: `Collaborator ${payload.action} in ${payload.repository?.full_name}`,
@@ -75,7 +68,6 @@ export const eventConfig: {
     }),
   },
   commit_comment: {
-    color: 0x000000,
     description: "A comment was added to a commit.",
     getDetails: (payload) => ({
       title: `Commit Comment ${payload.action} in ${payload.repository?.full_name}`,
@@ -87,7 +79,6 @@ export const eventConfig: {
     }),
   },
   discussion: {
-    color: 0x00bfff,
     description: "A discussion was created or updated.",
     getDetails: (payload) => ({
       title: `Discussion ${payload.action} in ${payload.repository?.full_name}`,
@@ -99,7 +90,6 @@ export const eventConfig: {
     }),
   },
   fork: {
-    color: 0x00ff00,
     description: "A repository was forked.",
     getDetails: (payload) => ({
       title: `Forked Repository ${payload.repository?.full_name}`,
@@ -110,7 +100,6 @@ export const eventConfig: {
     }),
   },
   discussion_comment: {
-    color: 0xffa500,
     description: "A comment was added to a discussion.",
     getDetails: (payload) => ({
       title: `Discussion Comment ${payload.action} in ${payload.repository?.full_name}`,
@@ -121,7 +110,6 @@ export const eventConfig: {
     }),
   },
   issue_comment: {
-    color: 0x8a2be2,
     description: "A comment was added to an issue.",
     getDetails: (payload) => ({
       title: `Issue Comment ${payload.action} in ${payload.repository?.full_name}`,
@@ -133,7 +121,6 @@ export const eventConfig: {
     }),
   },
   pull_request_review_comment: {
-    color: 0xff4500,
     description: "A comment was added to a pull request review.",
     getDetails: (payload) => ({
       title: `Pull Request Review Comment ${payload.action} in ${payload.repository?.full_name}`,
@@ -149,7 +136,6 @@ export const eventConfig: {
     }),
   },
   pull_request_review_thread: {
-    color: 0x4682b4,
     description: "A review thread was created or updated.",
     getDetails: (payload) => ({
       title: `Pull Request Review Thread ${payload.action} in ${payload.repository?.full_name}`,
@@ -164,7 +150,6 @@ export const eventConfig: {
     }),
   },
   pull_request_review: {
-    color: 0x1e90ff,
     description: "A pull request review was created or updated.",
     getDetails: (payload) => ({
       title: `Pull Request Review ${payload.action} in ${payload.repository?.full_name}`,
@@ -176,7 +161,6 @@ export const eventConfig: {
     }),
   },
   repository: {
-    color: 0x00bfff,
     description: "A repository was created, updated, or deleted.",
     getDetails: (payload) => ({
       title: `Repository ${payload.action} ${payload.repository?.full_name}`,
@@ -191,7 +175,6 @@ export const eventConfig: {
     }),
   },
   visibility_change: {
-    color: 0x4b0082,
     description: "A repository visibility was changed.",
     getDetails: (payload) => ({
       title: `Visibility Change for ${payload.repository?.full_name}`,

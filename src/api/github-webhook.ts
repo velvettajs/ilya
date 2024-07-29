@@ -24,8 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   };
   const { data: gifs } = await gf.search("cats coding");
   const gif = gifs[Math.floor(Math.random() * gifs.length)];
-  const { title, description, color, fields, url } =
-    eventDetails.getDetails(payload);
+  const { title, description, fields, url } = eventDetails.getDetails(payload);
   const embed = {
     author: {
       name: authorName,
@@ -33,7 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     },
     title,
     description,
-    color,
+    color: Math.floor(Math.random() * 16777215).toString(16),
     fields,
     url,
     timestamp: new Date().toISOString(),

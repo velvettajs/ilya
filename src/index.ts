@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const webhookUrl: string = process.env.WEBHOOK_URL as string;
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('this is velvetta codes!');
 })
 app.post("/github-webhook", async (req: Request, res: Response) => {
   const githubEvent = req.headers["x-github-event"] as string;

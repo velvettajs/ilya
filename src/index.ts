@@ -8,6 +8,9 @@ const app: Express = express();
 const PORT = process.env.PORT || 3000;
 const webhookUrl: string = process.env.WEBHOOK_URL as string;
 app.use(bodyParser.json());
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+})
 app.post("/github-webhook", async (req: Request, res: Response) => {
   const githubEvent = req.headers["x-github-event"] as string;
   const payload = req.body;
